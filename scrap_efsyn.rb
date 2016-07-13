@@ -22,12 +22,17 @@ filepaths.each do |filepath|
     date= doc.at_xpath('/html/body/div[2]/div[6]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[2]')
     creator=doc.at_xpath('/html/body/div[2]/div[6]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[3]')
 # body
+    # p date.content
+    # p date.content.split[0].chomp(',')
+    # p title.content
+    #  p title.content.gsub('/','_')
+    # p aaa
     # if 
     keim=doc.at_xpath('/html/body/div[2]/div[6]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[4]/div/div')
     if keim.nil?
     keim=doc.at_xpath('/html/body/div[2]/div[6]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[3]/div') 
     end
-    ddirnam=outputdirectory + "/#{title.content.split().join('_')}_#{date.content.split[0]}.txt"
+    ddirnam=outputdirectory + "/#{title.content.gsub('/','_').split().join('_')}_#{date.content.split[0].chomp(',')}.txt"
     File.open(ddirnam, 'w') do |file| 
         # p ddirnam
         file.write(title.content)
